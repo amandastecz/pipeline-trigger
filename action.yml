@@ -1,18 +1,18 @@
-name: "Cross Repository Pipeline Trigger"
-description: "Initiates a workflow in a different repository and automatically posts the execution results in the associated pull request comments"
+name: "pipeline-trigger"
+description: "Triggers a workflow in another repository and posts results in the pull request comments"
 inputs:
   pat-token:
-    description: "Personal Access Token (PAT) for the repository initiating the workflow (actual repository)"
+    description: "Personal Access Token (PAT) for the repository initiating the workflow"
     required: true
   owner:
-    description: "Owner of the repository where the workflow will be triggered"
+    description: "Owner of the target repository where the workflow will be triggered"
     required: true
   repo:
-    description: "Repository where the workflow will be triggered"
+    description: "Target repository where the workflow will be triggered"
     required: true
 outputs:
   message:
-    description: "Result of the pipeline execution"
+    description: "Execution result of the triggered pipeline"
 runs:
   using: "node20"
   main: "dist/index.js"
