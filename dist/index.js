@@ -31157,7 +31157,7 @@ async function run() {
         if (await dispatchWorkflow(octokit, owner, repo, context)) {
             console.log("Workflow dispatch initiated successfully.");
             const { status, conclusion } = await waitForWorkflowCompletion(octokit, owner, repo, context);
-            const message = `The workflow ends execution. Status: ${status}. Conclusion: ${conclusion}. See more information here: ${url}`;
+            const message = `The workflow ends execution. Status: ${status}. Conclusion: ${conclusion}.`;
             await createComment(octokit, context, message);
             console.log(`[Cross Repository Pipeline Trigger] 🚀: ${message}`);
             core.setOutput('message', message);
