@@ -31126,7 +31126,7 @@ async function waitForWorkflowCompletion(octokit, owner, repo, context) {
                 await sleep(30000);
             }
         }
-        return { status, conclusion };
+        return { status, conclusion, url };
     } catch (error) {
         console.error("Error waiting for workflow completion:", error);
         throw error;
@@ -31154,10 +31154,15 @@ async function run() {
         const repo = core.getInput('repo', { required: true });
         const octokit = github.getOctokit(token);
         const context = github.context;
+        let message = "";
         if (await dispatchWorkflow(octokit, owner, repo, context)) {
             console.log("Workflow dispatch initiated successfully.");
-            const { status, conclusion } = await waitForWorkflowCompletion(octokit, owner, repo, context);
-            const message = `The workflow ends execution. Status: ${status}. Conclusion: ${conclusion}.`;
+            const { status, conclusion, url } = await waitForWorkflowCompletion(octokit, owner, repo, context);
+            if (conclusion == "success" && status == "completed") {
+                message = `✅✅✅ The workflow ends execution. Status: ${status}. Conclusion: ${conclusion}. ✅✅✅ See more details here: ${url}`;
+            } else {
+                message = `❌❌❌ The workflow ends execution. Status: ${status}. Conclusion: ${conclusion}. ❌❌❌ See more details here: ${url}`;
+            }
             await createComment(octokit, context, message);
             console.log(`[Cross Repository Pipeline Trigger] 🚀: ${message}`);
             core.setOutput('message', message);
