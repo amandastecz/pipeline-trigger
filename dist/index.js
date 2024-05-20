@@ -31123,7 +31123,7 @@ async function waitForWorkflowCompletion(octokit, owner, repo) {
             });
             conclusion = runResponse.data.conclusion;
             status = runResponse.data.status;
-            url = runResponse.data.url;
+            url = runResponse.data.html_url;
             if (status !== "completed") {
                 await sleep(30000);
             }
