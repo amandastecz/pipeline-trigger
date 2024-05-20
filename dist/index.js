@@ -31100,11 +31100,12 @@ async function dispatchWorkflow(octokit, owner, repo, context) {
     }
 }
 
-async function waitForWorkflowCompletion(octokit, owner, repo, context) {
+async function waitForWorkflowCompletion(octokit, owner, repo) {
     try {
         await sleep(30000);
         let status = null;
         let conclusion = null;
+        let url = "";
 
         const getRuns = await octokit.rest.actions.listWorkflowRunsForRepo({
             owner,
@@ -31122,6 +31123,7 @@ async function waitForWorkflowCompletion(octokit, owner, repo, context) {
             });
             conclusion = runResponse.data.conclusion;
             status = runResponse.data.status;
+            url = runResponse.data.url;
             if (status !== "completed") {
                 await sleep(30000);
             }
