@@ -10,14 +10,14 @@ The Cross Repository Pipeline Trigger Action is a GitHub Action that allows you 
 
 - `pat-token`: Personal Access Token (PAT) within the secrets of the repository initiating the workflow.
 - `owner`: Owner of the target repository where the workflow will be triggered.
-- `repo`: Name of the target pepository where the workflow will be triggered.
+- `repo`: Name of the target repository where the workflow will be triggered.
 
 ## Outputs
 - `message`:  Message within the original repository containing the workflow results of the target repository.
 
 ## Example Usage
 
-Setup this yml file within the origin repository, which means the repository who wants to trigger another one:
+Setup this yml file within the origin repository, which means the repository that wants to trigger another one:
 
 ```yaml
 name: Origin Repository Workflow
@@ -52,7 +52,8 @@ on:
 jobs:
   test: ...
 ```
-
+E.g. Success message within PR comments:
+![image](https://github.com/amandastecz/pipeline-trigger/assets/26572310/39fe31e5-f1e6-4a05-9012-534db460ceb1)
 
 ## Secrets
 
