@@ -4,6 +4,9 @@
 
 The Cross Repository Pipeline Trigger Action is a GitHub Action that allows you to initiate a workflow in a different repository (target repo) and automatically post the workflow execution results in the original repository's pull request comments.
 
+### Video Demo
+You can see a demonstration here: [Youtube Video](https://youtu.be/gJDN3kHFeXw?si=2x9FYKNwGmlJVIBN).
+
 ## Inputs
 
 ### Required Inputs
